@@ -1,86 +1,171 @@
-# KAIRA MAINSTREAM AI SONGWRITING ENGINE — GITHUB COPILOT PROJECT INSTRUCTIONS
+# KAIRA - Spanish/Latin Lyrics Generator 🎵
 
-You (Copilot) are assisting in building a production-grade Python + Streamlit web application called “KAIRA MAINSTREAM”. This app generates professional Spanish/Latin Pop/Urban lyrics using a Custom GPT backend powered by OpenAI (GPT-4.x or later).
+A powerful Streamlit application that generates authentic Spanish/Latin Pop and Urban lyrics using OpenAI's GPT-4. Perfect for creating reggaeton, dembow, trap latino, bachata urbana, and other Latin urban music genres.
 
-## CONTEXT:
-The songwriting rules, structure, persona, vocabulary, constraints, and QA logic come from these project documents:
-- KAIRA 2025 FULL DNA.txt 
-- KAIRA 2025 RESUMED DNA.txt
-- ASIF BULLET LIST.pdf
+## Features
 
-These documents define:
-- Persona: “MAINSTREAM”
-- Genre hierarchy
-- Vibe and tone definitions
-- Slang rules (1–2 marks/block)
-- Strict line counts per section
-- Section order defaults (V1 → Chorus → V2/Chanteo → Pre → Chorus)
-- Phonetic rules (sinalefa, stressed vowels, closure)
-- Hook structure (4+4)
-- Revision rules (micro-edits only)
-- QA checklist (structure, slang, phonetics, breath, endings, etc.)
+- 🎤 **Multiple Genre Support**: Reggaeton, Dembow, Trap Latino, Bachata Urbana, Latin Pop, and more
+- 🎭 **Customizable Parameters**: Control genre, type, vibe, energy, language, and slang density
+- 🎼 **Flexible Structure**: Choose from predefined song structures or go freestyle
+- 🗣️ **Phonetic Guidance**: Optional pronunciation help for difficult phrases
+- 📊 **QA Logs**: Get insights into the creative decisions behind your lyrics
+- 💾 **Export Options**: Download your lyrics as TXT or JSON files
+- 🌍 **Multiple Spanish Dialects**: Support for various regional variations
 
-## WHAT THIS REPO MUST IMPLEMENT:
-A full Python project with:
-- `/src/app.py` → Streamlit UI front-end  
-- Dropdown menus for:
-  - Genre
-  - Type
-  - Vibe
-  - Energy level
-  - Language (Spanish / English / Spanglish)
-  - Slang density (low/med/high)
-  - Section include toggles (chanteo, bridge, phonetic lines)
-  - Lyrics part selector (full song / verse only / chorus only / custom)
-  - Structure override (optional custom sequence)
-- Text inputs for notes (scenes, keywords)
-- Function that builds a JSON payload using user selections
-- Prompt templating function to inject payload into GPT user-prompt
-- GPT backend call using the Custom GPT system prompt (stored in prompts/system_prompt.txt)
-- Output handling:
-  - Render formatted lyrics
-  - Optional phonetic lines under each lyric line
-  - Display QA logs & metadata
-  - Provide download buttons for TXT / JSON
+## Installation
 
-## PROJECT REQUIREMENTS:
-- Python 3.10+
-- Streamlit app structured with clear UI sections
-- Use OpenAI’s API (responses.create or ChatCompletion)
-- Modular code:
-  - utils for JSON building
-  - postprocessing for QA parsing
-  - theme.py for styling
-- Ensure GPT output is valid JSON; implement retry logic
-- Use .env for OPENAI_API_KEY
-- Include example payloads
-- Include instructions on how to run locally:
-  streamlit run app.py
+### Prerequisites
 
-## DEVELOPMENT STYLE FOR COPILOT:
-- Generate clean, documented, production-quality code
-- Use functions, avoid bloated inline logic
-- Add helpful comments, docstrings, and type hints
-- Maintain expandable architecture for future RAG or LoRA integration
-- When generating code, prioritize clarity, modularity, and scalability
+- Python 3.8 or higher
+- OpenAI API key
 
-## WHAT TO GENERATE FIRST:
-1. Create folder structure:
-   /src
-   /prompts
-   /docs
-   .env.example
-   requirements.txt
+### Setup
 
-2. Create `app.py` with:
-   - Streamlit UI
-   - JSON payload builder
-   - Prompt template generator
-   - GPT call
-   - Output renderer
+1. Clone the repository:
+```bash
+git clone https://github.com/sydashir/KAIRA.git
+cd KAIRA
+```
 
-3. Create `prompts/system_prompt.txt` containing KAIRA’s system prompt.
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-4. Create utils and postprocessing modules.
+3. Set up your OpenAI API key:
+```bash
+cp .env.example .env
+# Edit .env and add your OpenAI API key
+```
 
-Copilot: Use this description as your full understanding of the project. Generate cohesive, high-quality Python code that is aligned with the KAIRA DNA documents and the Streamlit workflow described above.
+## Usage
+
+### Running the Application
+
+Start the Streamlit app:
+```bash
+streamlit run app.py
+```
+
+The application will open in your default web browser at `http://localhost:8501`
+
+### Using the Generator
+
+1. **Configure Your Lyrics** (in the sidebar):
+   - **Genre**: Select from Reggaeton, Dembow, Trap Latino, etc.
+   - **Type**: Choose the song type (Love Song, Party Anthem, etc.)
+   - **Vibe**: Set the emotional tone (Romantic, Energetic, etc.)
+   - **Energy**: Select energy level from Low (Chill) to High (Hype)
+   - **Language**: Pick your preferred Spanish dialect or Spanglish
+   - **Slang Density**: Adjust from 0 (formal) to 10 (heavy street slang)
+   - **Structure**: Select your song structure
+   - **Additional Elements**: 
+     - Enable Chanteo for catchy repetitive hooks
+     - Include Bridge section
+     - Add Phonetics for pronunciation guidance
+   - **Lyrics Part**: Generate complete song or specific sections
+   - **Notes**: Add any additional requirements or themes
+
+2. **Generate**: Click the "Generate Lyrics" button
+
+3. **Review**: View your generated lyrics in three tabs:
+   - **Lyrics**: The main lyrical content
+   - **Phonetics**: Pronunciation guidance (if enabled)
+   - **QA Log**: Creative insights and cultural references
+
+4. **Download**: Save your lyrics as TXT or JSON format
+
+## Project Structure
+
+```
+KAIRA/
+├── app.py              # Main Streamlit application
+├── openai_client.py    # OpenAI API integration
+├── utils.py            # Utility functions
+├── requirements.txt    # Python dependencies
+├── .env.example        # Environment variables template
+├── .gitignore          # Git ignore rules
+└── README.md           # This file
+```
+
+## Configuration Options
+
+### Genres
+- Reggaeton
+- Dembow
+- Trap Latino
+- Bachata Urbana
+- Latin Pop
+- Cumbia Urbana
+- Salsa Urbana
+- Corridos Tumbados
+
+### Song Types
+- Love Song
+- Party Anthem
+- Heartbreak
+- Success/Flex
+- Storytelling
+- Romantic
+- Perreo
+- Social Commentary
+
+### Vibes
+- Romantic, Energetic, Melancholic, Aggressive, Sensual, Playful, Dark, Uplifting, Chill
+
+### Languages
+- Spanish (Spain)
+- Spanish (Latin America)
+- Spanglish
+- Regional variations (Caribbean, Mexico, South America)
+
+## Modular Architecture
+
+The application is built with modularity in mind:
+
+- **`app.py`**: UI layer with Streamlit components
+- **`openai_client.py`**: Handles all OpenAI API interactions
+- **`utils.py`**: Contains utility functions for:
+  - JSON payload building
+  - Response parsing
+  - Download formatting
+  - System prompt management
+
+## API Key Security
+
+- Never commit your `.env` file
+- Use environment variables for API keys
+- The `.env.example` file is provided as a template
+
+## Requirements
+
+- streamlit>=1.28.0
+- openai>=1.3.0
+- python-dotenv>=1.0.0
+
+## Troubleshooting
+
+**Issue**: "OpenAI API key not found"
+- **Solution**: Make sure you've created a `.env` file with your `OPENAI_API_KEY`
+
+**Issue**: Generation takes too long
+- **Solution**: Check your internet connection and OpenAI API status
+
+**Issue**: Lyrics not culturally accurate
+- **Solution**: Adjust the slang density, provide more specific notes, or try different genre combinations
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Support
+
+For issues, questions, or suggestions, please open an issue on GitHub.
+
+---
+
+Built with ❤️ using Streamlit and OpenAI GPT-4
