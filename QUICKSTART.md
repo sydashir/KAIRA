@@ -1,85 +1,226 @@
-# Quick Start Guide
+# 🚀 KAIRA 2025 QUICKSTART
 
-Get started with KAIRA in 5 minutes! 🚀
+Get your KAIRA MAINSTREAM songwriting assistant running in 5 minutes!
+
+---
 
 ## Step 1: Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements_new.txt
 ```
+
+---
 
 ## Step 2: Set Up OpenAI API Key
 
-1. Get your OpenAI API key from https://platform.openai.com/api-keys
-2. Create a `.env` file:
+1. Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+
+2. Create a `.env` file in the project root:
    ```bash
    cp .env.example .env
    ```
-3. Edit `.env` and add your API key:
-   ```
+
+3. Edit `.env` and add your key:
+   ```env
    OPENAI_API_KEY=sk-your-actual-api-key-here
+   DEFAULT_MODEL=gpt-4o
+   DEFAULT_TEMPERATURE=0.8
+   DEFAULT_MAX_TOKENS=2500
    ```
 
-## Step 3: Run the App
+---
+
+## Step 3: Run the Application
 
 ```bash
-streamlit run app.py
+streamlit run app_new.py
 ```
 
-The app will open in your browser at `http://localhost:8501`
+The app will automatically open in your browser at `http://localhost:8501`
+
+---
 
 ## Step 4: Generate Your First Lyrics
 
-### Simple Example - Party Reggaeton:
+### Example 1: Romantic Reggaeton
 
-1. **Left Sidebar** - Configure your lyrics:
-   - Genre: `Reggaeton`
-   - Type: `Party Anthem`
-   - Vibe: `Energetic`
-   - Energy: `High (Hype)`
-   - Language: `Spanish (Latin America)`
-   - Slang Density: `7`
-   - Leave other settings as default
+**Configure (Left Sidebar):**
+- Model: `gpt-4o`
+- Genre: `Reggaeton`
+- Type: `Romantic`
+- Vibe: `Sensual`
+- Energy: `Medium`
+- Language: `Spanish`
+- Slang Density: `Medium (4-6)`
 
-2. **Optional**: Add notes:
-   ```
-   Need high-energy party vibes for summer
-   ```
+**Add Notes:**
+```
+Beach sunset, bittersweet memories after breakup,
+visual scenes, not melodramatic, Caribbean vibes
+```
 
-3. **Click** the red "🎤 Generate Lyrics" button
+**Keywords:**
+```
+playa, atardecer, recuerdo, mirada
+```
 
-4. **View** your generated lyrics in the tabs:
-   - 📝 Lyrics - Your generated content
-   - 🗣️ Phonetics - Pronunciation guide
-   - 📊 QA Log - Creative insights
+**Click "🎤 Generate Lyrics"**
 
-5. **Download** your lyrics:
-   - Click "Download as TXT" for plain text
-   - Click "Download as JSON" for structured data
+---
 
-## What's Next?
+### Example 2: High-Energy Party Trap
 
-- Check out [USAGE_EXAMPLES.md](USAGE_EXAMPLES.md) for more detailed examples
-- Read the full [README.md](README.md) for all features
-- Experiment with different configurations!
+**Configure:**
+- Genre: `Latin Trap`
+- Type: `Party`
+- Vibe: `Energetic`
+- Energy: `High`
+- Language: `Spanglish`
+- Slang Density: `High (7-10)`
+- ✅ Include Chanteo
 
-## Troubleshooting
+**Notes:**
+```
+Club energy, neon lights, heavy bass,
+Puerto Rican street slang, party anthem
+```
 
-**Problem**: "OpenAI API key not found"
-- **Solution**: Make sure you created the `.env` file with your API key
+**Click "🎤 Generate Lyrics"**
 
-**Problem**: Generation takes too long
-- **Solution**: Check your internet connection and OpenAI API status
+---
 
-**Problem**: Lyrics don't match my expectations
-- **Solution**: Be more specific in the "Additional Notes" field and adjust slang density
+## Step 5: Review Output
 
-## Tips for Great Results
+### Tabs Available:
 
-1. 🎯 **Be specific** - Add details in the Notes field
-2. 🎚️ **Adjust slang** - Use slider to control language formality
-3. 🎭 **Match energy to genre** - High energy for party tracks, lower for ballads
-4. 🗣️ **Enable phonetics** - If you need pronunciation help
-5. 🎵 **Start with chorus** - Generate the hook first, then build around it
+1. **📝 Lyrics**
+   - Complete formatted lyrics
+   - Sections labeled: [VERSE 1], [CHORUS], etc.
+   - Ready for studio use
 
-Enjoy creating! 🎵
+2. **🗣️ Phonetics** (if enabled)
+   - Difficult phrase breakdowns
+   - Sinalefa markings
+   - Rhythm notes
+
+3. **📊 QA Log**
+   - Creative choices explained
+   - Cultural references
+   - Slang usage notes
+
+4. **ℹ️ Metadata**
+   - Structure validation
+   - Line counts
+   - Model info
+   - Estimated duration
+
+---
+
+## Step 6: Download
+
+- **📄 Download as TXT**: Clean format for printing/studio
+- **📋 Download as JSON**: Complete structured data with metadata
+
+---
+
+## 🎯 Quick Tips
+
+### For Best Results:
+
+1. **Be Specific**: "Beach sunset, red dress, nostalgic" > "Make it emotional"
+2. **Match Energy**: High for Reggaeton/Dembow, Medium for Bachata
+3. **Use Slang Wisely**: Low (0-3) for radio, High (7-10) for underground
+4. **Enable Phonetics**: Especially for non-native Spanish speakers
+5. **Try Different Models**: GPT-4o for quality, GPT-4o-mini for speed
+
+### Genre-Energy Pairings:
+
+| Genre | Typical Energy | Common Vibe |
+|-------|---------------|-------------|
+| Reggaeton | High | Energetic, Sensual |
+| Bachata Urbana | Medium | Romantic, Melancholic |
+| Latin Trap | Medium-High | Aggressive, Dark |
+| Latin Pop | Medium | Warm, Hopeful |
+| Dembow | High | Playful, Energetic |
+
+---
+
+## 🎼 Understanding KAIRA Structure
+
+### Default MAINSTREAM Structure:
+```
+[verse 1] → [chorus] → [verse 2] → [pre-chorus] → [chorus]
+```
+
+### Line Counts:
+- **Verse**: 8 lines (sets the scene)
+- **Pre-Chorus**: 4 lines (builds tension)
+- **Chorus**: 8 lines (4+4 hook+echo)
+- **Chanteo**: 8-16 lines (flow-driven, optional)
+- **Bridge**: 4-6 lines (emotional twist, optional)
+
+---
+
+## 🔧 Troubleshooting
+
+**Problem**: API Key Error
+- **Solution**: Check `.env` file has correct `OPENAI_API_KEY`
+
+**Problem**: Generation is slow
+- **Solution**: Switch to `gpt-4o-mini` model
+
+**Problem**: Lyrics not matching expectations
+- **Solution**: 
+  - Be more specific in Notes field
+  - Add relevant Keywords
+  - Adjust Slang Density
+  - Try regenerating with same settings (AI variation)
+
+---
+
+## 📖 Next Steps
+
+- Read full [README_NEW.md](README_NEW.md) for comprehensive guide
+- Check [KAIRA DNA documents](data/) for specs
+- Experiment with different configurations
+- Try revision workflow (generate → refine → regenerate)
+
+---
+
+## 🎵 Success Criteria
+
+Your lyrics are KAIRA-quality when:
+- ✅ They sound singable (not just readable)
+- ✅ Rhythm feels natural (breathable phrases)
+- ✅ Spanish sounds current (2025 Gen-Z tone)
+- ✅ Slang is subtle and credible
+- ✅ Chorus is catchy (hook+echo pattern)
+- ✅ Scenes are visual (movie in words)
+
+---
+
+## 🎤 Example Output Preview
+
+```
+[VERSE 1]
+Baby, qué más
+Hace rato no sé na' de ti
+Taba con alguien, pero ya estoy free
+Pa' revivir lo que fue, si te apetece a ti
+
+Sigo pensando en tu voz
+Y en la última vez que te vi
+No sé si fue el vino o el adiós
+Pero aún me vibra tu hoodie en mí
+
+[CHORUS]
+Si antes te hubiera conocido
+No habría final, solo destino
+Tú y yo mirando el mismo ruido
+La playa hablándonos al oído
+```
+
+---
+
+**Ready to create? Run `streamlit run app_new.py` now! 🎧**
