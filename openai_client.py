@@ -54,11 +54,11 @@ class LyricsGenerator:
             response_text = response.choices[0].message.content
             return parse_response(response_text)
             
-        except Exception as e:
+        except Exception:
             return {
                 "lyrics": "",
                 "phonetics": "",
-                "qa_log": f"Error generating lyrics: {str(e)}"
+                "qa_log": "An error occurred while generating lyrics. Please check your API key and try again."
             }
     
     def _create_user_message(self, payload: Dict[str, Any]) -> str:
