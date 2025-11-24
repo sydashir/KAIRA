@@ -212,8 +212,8 @@ with col1:
                 
                 st.success("Lyrics generated successfully! 🎉")
                 
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
+            except Exception:
+                st.error("An error occurred while generating lyrics. Please check your configuration and API key.")
                 st.session_state.generated = False
 
 with col2:
@@ -230,10 +230,11 @@ if st.session_state.get('generated', False):
     
     with tab1:
         st.subheader("Generated Lyrics")
-        if st.session_state.lyrics:
+        lyrics = st.session_state.get('lyrics', '')
+        if lyrics:
             st.text_area(
                 "Lyrics",
-                value=st.session_state.lyrics,
+                value=lyrics,
                 height=400,
                 key="lyrics_display"
             )
@@ -242,10 +243,11 @@ if st.session_state.get('generated', False):
     
     with tab2:
         st.subheader("Phonetics Guide")
-        if st.session_state.phonetics:
+        phonetics = st.session_state.get('phonetics', '')
+        if phonetics:
             st.text_area(
                 "Phonetics",
-                value=st.session_state.phonetics,
+                value=phonetics,
                 height=400,
                 key="phonetics_display"
             )
@@ -254,10 +256,11 @@ if st.session_state.get('generated', False):
     
     with tab3:
         st.subheader("Quality Assurance Log")
-        if st.session_state.qa_log:
+        qa_log = st.session_state.get('qa_log', '')
+        if qa_log:
             st.text_area(
                 "QA Log",
-                value=st.session_state.qa_log,
+                value=qa_log,
                 height=400,
                 key="qa_log_display"
             )
@@ -273,10 +276,10 @@ if st.session_state.get('generated', False):
     with col1:
         # TXT download
         txt_content = format_download_txt(
-            st.session_state.lyrics,
-            st.session_state.phonetics,
-            st.session_state.qa_log,
-            st.session_state.payload
+            st.session_state.get('lyrics', ''),
+            st.session_state.get('phonetics', ''),
+            st.session_state.get('qa_log', ''),
+            st.session_state.get('payload', {})
         )
         st.download_button(
             label="Download as TXT",
@@ -289,10 +292,10 @@ if st.session_state.get('generated', False):
     with col2:
         # JSON download
         json_content = format_download_json(
-            st.session_state.lyrics,
-            st.session_state.phonetics,
-            st.session_state.qa_log,
-            st.session_state.payload
+            st.session_state.get('lyrics', ''),
+            st.session_state.get('phonetics', ''),
+            st.session_state.get('qa_log', ''),
+            st.session_state.get('payload', {})
         )
         st.download_button(
             label="Download as JSON",
