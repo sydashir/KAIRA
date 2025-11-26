@@ -45,6 +45,7 @@ Based on the KAIRA DNA specifications, this system writes like a real human song
 ### 📏 Line Count Specifications
 
 Based on KAIRA DNA:
+
 - **Verse**: 8 lines (conversational, cinematic tone)
 - **Pre-Chorus**: 4 lines (builds tension)
 - **Chorus**: 8 lines (4+4 hook+echo pattern)
@@ -77,32 +78,93 @@ Based on KAIRA DNA:
 
 - Python 3.8 or higher
 - OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
+- Git (for cloning the repository)
 
-### Installation
+### Installation Steps
 
 1. **Clone the repository**:
+
    ```bash
-   git clone https://github.com/yourusername/kaira.git
-   cd kaira
+   git clone https://github.com/sydashir/KAIRA.git
+   cd KAIRA
    ```
 
-2. **Install dependencies**:
+2. **Create a virtual environment** (recommended):
+
    ```bash
-   pip install -r requirements_new.txt
+   # Windows
+   python -m venv venv
+   venv\Scripts\activate
+
+   # macOS/Linux
+   python3 -m venv venv
+   source venv/bin/activate
    ```
 
-3. **Set up environment variables**:
+3. **Install dependencies**:
+
    ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set up your API key**:
+
+   Create a `.env` file in the project root:
+
+   ```bash
+   # Copy the example file
    cp .env.example .env
-   # Edit .env and add your OpenAI API key
    ```
 
-4. **Run the application**:
+   Then edit `.env` and add your OpenAI API key:
+
+   ```env
+   OPENAI_API_KEY=your_actual_api_key_here
+   ```
+
+5. **Run the application**:
+
    ```bash
-   streamlit run app_new.py
+   streamlit run app.py
    ```
 
-The app will open in your browser at `http://localhost:8501`
+6. **Open in browser**:
+
+   The app will automatically open at `http://localhost:8501`
+
+   If it doesn't open automatically, copy the URL from the terminal.
+
+### First Time Setup (Complete Example)
+
+```bash
+# 1. Clone
+git clone https://github.com/sydashir/KAIRA.git
+cd KAIRA
+
+# 2. Virtual environment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# 3. Install
+pip install -r requirements.txt
+
+# 4. Configure
+echo "OPENAI_API_KEY=sk-your-key-here" > .env
+
+# 5. Run
+streamlit run app.py
+```
+
+### Verify Installation
+
+After running `streamlit run app.py`, you should see:
+
+- A colorful music-themed interface
+- Purple/cyan gradient background
+- Studio controls in the sidebar
+- No errors in the terminal
+
+If you see "OpenAI API key not found", check your `.env` file.
 
 ---
 
@@ -113,6 +175,7 @@ The app will open in your browser at `http://localhost:8501`
 1. **Select AI Model**: Choose GPT-4o (recommended), GPT-4o-mini, or GPT-4-turbo
 
 2. **Configure Core Parameters**:
+
    - Genre: Latin Pop, Reggaeton, etc.
    - Type: Romantic, Heartbreak, Party, etc.
    - Vibe: Warm, Dark, Energetic, etc.
@@ -121,16 +184,19 @@ The app will open in your browser at `http://localhost:8501`
    - Slang Density: How much street slang to use
 
 3. **Add Singer Profile** (Optional):
+
    - Gender, nationality, vocal style
    - Helps tailor lyrics to specific artists
 
 4. **Choose Structure**:
+
    - Use Mainstream Default or select a preset
    - Enable Chanteo for flow-driven sections
    - Enable Bridge for emotional twist
    - Enable Phonetics for pronunciation help
 
 5. **Provide Creative Direction**:
+
    - Notes: Scenes, themes, emotions, requirements
    - Keywords: Words to include in lyrics
    - Forbidden Words: Words to avoid
@@ -143,6 +209,7 @@ The app will open in your browser at `http://localhost:8501`
 ### Example Configuration
 
 **Romantic Reggaeton Ballad:**
+
 ```
 Genre: Reggaeton
 Type: Romantic
@@ -186,6 +253,7 @@ Keywords: playa, recuerdo, mirada
 ### Revision Protocol
 
 When editing, KAIRA preserves:
+
 - Original rhythm and flow
 - Tone & lexical field (same word family)
 - Structure (same order/line count)
@@ -265,12 +333,14 @@ DEFAULT_MAX_TOKENS=2500
 ### Notes Field Best Practices
 
 **Good:**
+
 ```
 Visual scenes, beach sunset, red dress flowing in wind,
 nostalgic but not sad, subtle desire, Caribbean vibes
 ```
 
 **Avoid:**
+
 ```
 Make it good and emotional
 ```
@@ -329,21 +399,59 @@ Make it good and emotional
 
 ## 🛠️ Troubleshooting
 
+### Common Issues
+
 **Issue**: "OpenAI API key not found"
-- **Solution**: Create `.env` file with `OPENAI_API_KEY=your_key`
+
+- **Solution**:
+  1. Make sure `.env` file exists in the project root
+  2. Check that it contains `OPENAI_API_KEY=your_key`
+  3. Restart the Streamlit app after creating `.env`
+  4. Verify no extra spaces around the `=` sign
+
+**Issue**: `ModuleNotFoundError: No module named 'streamlit'`
+
+- **Solution**:
+  ```bash
+  pip install -r requirements.txt
+  ```
+  Make sure your virtual environment is activated.
 
 **Issue**: Generation timeout
+
 - **Solution**: Switch to GPT-4o-mini for faster responses
 
 **Issue**: Lyrics don't match expected quality
-- **Solution**: 
+
+- **Solution**:
   - Be more specific in Notes field
   - Adjust slang density
   - Try different model (GPT-4o recommended)
   - Add keywords for specific vocabulary
 
 **Issue**: JSON parsing error
+
 - **Solution**: Automatic retry enabled; if persistent, check API status
+
+**Issue**: App shows blank/white screen
+
+- **Solution**:
+  1. Clear browser cache
+  2. Restart Streamlit: Press Ctrl+C in terminal, then run `streamlit run app.py` again
+  3. Try a different browser
+
+**Issue**: Port 8501 already in use
+
+- **Solution**:
+
+  ```bash
+  # Kill existing Streamlit process
+  # Windows: taskkill /F /IM streamlit.exe
+  # Linux/Mac: pkill -f streamlit
+
+  # Or use a different port
+  streamlit run app.py --server.port 8502
+  ```
 
 ---
 
@@ -392,6 +500,7 @@ MIT License - See LICENSE file
 ## 📧 Support
 
 For issues, questions, or feature requests:
+
 - Open an issue on GitHub
 - Check existing documentation
 - Review KAIRA DNA files
@@ -401,18 +510,21 @@ For issues, questions, or feature requests:
 ## 🎵 Example Use Cases
 
 ### Songwriters
+
 1. Generate chorus first to establish hook
 2. Build verses around theme
 3. Use revision for polish
 4. Export JSON for project archival
 
 ### Producers
+
 1. Match lyrics to beat energy
 2. Use phonetics to verify singability
 3. Adjust slang for target market
 4. Download TXT for studio sessions
 
 ### Artists
+
 1. Specify your nationality for regional flavor
 2. Set vocal style preferences
 3. Use keywords for personal topics
@@ -422,4 +534,4 @@ For issues, questions, or feature requests:
 
 **Built with ❤️ for Latin Music Creators**
 
-*KAIRA 2025 — Professional songwriting at the speed of inspiration*
+_KAIRA 2025 — Professional songwriting at the speed of inspiration_
