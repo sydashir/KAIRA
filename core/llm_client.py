@@ -57,7 +57,7 @@ class LLMClient:
             if not self.api_key:
                 raise ValueError("Anthropic API key not found.")
             self.client = anthropic.Anthropic(api_key=self.api_key)
-            self.model = self.model or "claude-3-5-sonnet-20240620"
+            self.model = self.model or "claude-sonnet-4-20250514"
             
         elif self.provider == "google":
             try:
