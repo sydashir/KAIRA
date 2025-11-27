@@ -4,7 +4,7 @@ Parses and validates GPT responses.
 """
 
 import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Union
 
 
 class ResponseParser:
@@ -13,27 +13,39 @@ class ResponseParser:
     """
     
     @staticmethod
-    def parse(response_text: str) -> Dict[str, Any]:
+    def parse(response: Any) -> Dict[str, Any]:
         """
-        Parse GPT response text into structured format.
+        Parse GPT response into structured format.
         
         Args:
-            response_text: Raw response from GPT
+            response: Raw response from GPT (string or dict)
             
         Returns:
             Parsed dictionary with lyrics, phonetics, qa_log, metadata
         """
         try:
-            # Try to parse as JSON
-            data = json.loads(response_text)
+            # If already a dict, validate and return
+            if isinstance(response, dict):
+                return ResponseParser._validate_structure(response)
             
-            # Validate structure
-            validated = ResponseParser._validate_structure(data)
-            return validated
+            # If string, try to parse as JSON
+            if isinstance(response, str):
+                data = json.loads(response)
+                # Validate structure
+                validated = ResponseParser._validate_structure(data)
+                return validated
+            
+            # Unexpected type
+            return {
+                "lyrics": {"full_text": str(response)},
+                "phonetics": {},
+                "qa_log": {"notes": "Unexpected response type"},
+                "metadata": {"error": "Invalid response type"}
+            }
             
         except json.JSONDecodeError:
             # Not valid JSON, try to extract sections manually
-            return ResponseParser._extract_from_text(response_text)
+            return ResponseParser._extract_from_text(str(response))
     
     @staticmethod
     def _validate_structure(data: Dict[str, Any]) -> Dict[str, Any]:

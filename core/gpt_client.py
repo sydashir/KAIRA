@@ -16,13 +16,14 @@ class GPTClient:
     """
     
     SUPPORTED_MODELS = [
+        "gpt-5",
+        "gpt-5-turbo",
+        "o3-mini",
         "gpt-4o",
         "gpt-4o-mini",
         "gpt-4-turbo",
         "gpt-4-turbo-preview",
-        "gpt-4",
-        "gpt-5",  # Future support
-        "gpt-5-turbo"  # Future support
+        "gpt-4"
     ]
     
     def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
@@ -84,7 +85,7 @@ class GPTClient:
             }
             
             # Use JSON mode if requested and supported
-            if use_json_mode and self.model in ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-4-turbo-preview"]:
+            if use_json_mode and self.model in ["gpt-5", "gpt-5-turbo", "o3-mini", "gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-4-turbo-preview"]:
                 kwargs["response_format"] = {"type": "json_object"}
             
             response = self.client.chat.completions.create(**kwargs)

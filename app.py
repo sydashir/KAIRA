@@ -506,21 +506,33 @@ provider = st.sidebar.selectbox(
 )
 
 if provider == "OpenAI":
-    model_options = ["gpt-4o", "o1-preview", "o1-mini", "gpt-4-turbo"]
-    default_ix = 0
+    model_options = ["gpt-5", "gpt-5-turbo", "o3-mini", "gpt-4o", "o1-preview", "o1-mini", "gpt-4-turbo"]
+    default_ix = 3
 elif provider == "Anthropic":
-    model_options = ["claude-3-5-sonnet-latest", "claude-3-5-haiku-latest", "claude-3-opus-latest"]
+    model_options = ["Claude Sonnet 4 (Latest)", "Claude 3.5 Sonnet", "Claude 3.5 Haiku", "Claude 3 Opus"]
     default_ix = 0
 else:  # Google
     model_options = ["gemini-1.5-pro-002", "gemini-1.5-flash-002"]
     default_ix = 0
 
-selected_model = st.sidebar.selectbox(
+selected_model_display = st.sidebar.selectbox(
     "Model",
     model_options,
     index=default_ix,
     help=f"Select model for {provider}"
 )
+
+# Map display names to actual API model identifiers
+model_mapping = {
+    # Anthropic
+    "Claude Sonnet 4 (Latest)": "claude-sonnet-4-20250514",
+    "Claude 3.5 Sonnet": "claude-3-5-sonnet-20241022",
+    "Claude 3.5 Haiku": "claude-3-5-haiku-20241022",
+    "Claude 3 Opus": "claude-3-opus-20240229",
+}
+
+# Get actual model identifier
+selected_model = model_mapping.get(selected_model_display, selected_model_display)
 
 st.sidebar.markdown("---")
 
@@ -938,7 +950,7 @@ st.markdown("""
         POWERED BY {model}
     </p>
 </div>
-""".format(model=selected_model), unsafe_allow_html=True)
+""".format(model=selected_model_display), unsafe_allow_html=True)
 
 # Instructions expander
 with st.expander("ℹ️ How to Use KAIRA MAINSTREAM"):
@@ -991,16 +1003,26 @@ with st.expander("🤖 AI Model Information"):
     st.markdown("""
     ### Supported Models
     
-    - **GPT-4o** (Recommended): Latest multimodal model, excellent for creative writing
-    - **GPT-4o-mini**: Faster and more affordable, good for experimentation
+    #### OpenAI
+    - **GPT-5**: Latest flagship model (if available)
+    - **GPT-5 Turbo**: Faster GPT-5 variant
+    - **o3-mini**: Latest reasoning model
+    - **GPT-4o** (Recommended): Excellent for creative writing
+    - **o1-preview/o1-mini**: Advanced reasoning models
     - **GPT-4-turbo**: High-quality, reliable generation
-    - **GPT-4**: Original GPT-4, stable and tested
     
-    ### Coming Soon
-    - GPT-5 and future OpenAI models (automatic support when released)
+    #### Anthropic
+    - **Claude Sonnet 4** (Latest): Most advanced Claude model
+    - **Claude 3.5 Sonnet**: Previous generation, highly capable
+    - **Claude 3.5 Haiku**: Fast and efficient
+    - **Claude 3 Opus**: Most capable Claude 3 model
+    
+    #### Google
+    - **Gemini 1.5 Pro**: Advanced reasoning and creativity
+    - **Gemini 1.5 Flash**: Fast and efficient
     
     ### Model Selection Tips
-    - Use **GPT-4o** for production-quality lyrics
-    - Use **GPT-4o-mini** for rapid iteration and testing
+    - Use **Claude Sonnet 4** or **GPT-5** for production-quality lyrics
+    - Use **Claude 3.5 Haiku** or **o3-mini** for rapid iteration
     - Higher temperature (0.8-0.9) for more creative, varied outputs
     """)
